@@ -18,6 +18,20 @@ public class City {
     private Region region;
 
     
+    
+    public City() {
+    }
+
+    public City(Long id, String name, Region region) {
+        this.id = id;
+        this.name = name;
+        this.region = region;
+    }
+
+    public City(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
