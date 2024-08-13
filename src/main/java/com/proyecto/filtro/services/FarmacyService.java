@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.proyecto.filtro.dto.FarmacyDto;
 import com.proyecto.filtro.entity.Farmacy;
+import com.proyecto.filtro.repository.CityRepositoyPort;
 import com.proyecto.filtro.repository.FarmacyRepositoryPort;
 
 import lombok.RequiredArgsConstructor;
@@ -15,9 +17,17 @@ import lombok.RequiredArgsConstructor;
 public class FarmacyService {
 
     private final FarmacyRepositoryPort farmacyRepositoryPort;
+    private final CityRepositoyPort cityRepositoyPort;
 
-    public Farmacy createFarmacy(Farmacy farmacy) {
-        return farmacyRepositoryPort.save(farmacy);
+    public Farmacy createFarmacy(FarmacyDto farmacy) {
+        Farmacy farmacyImport = new Farmacy();
+        farmacyImport.setName(farmacy.getName());
+        farmacyImport.setAddress(farmacy.getAddress());
+        farmacyImport.setLon(farmacy.getLon());
+        farmacyImport.setLat(farmacy.getLat());
+        farmacyImport.setLogoFarmacy(farmacy.getLogoFarmacy());
+        farmacyImport.setCity(cityRepositoyPort.findById(farmacy.getCity_id()).get());
+        return farmacyRepositoryPort.save(farmacyImport);
     }
 
     public Optional<Farmacy> getFarmacyById(Long id) {
@@ -32,8 +42,8 @@ public class FarmacyService {
         return farmacyRepositoryPort.findAll();
     }
     
-    public Farmacy updateFarmacy(Long id, Farmacy farmacy) {
-        return farmacyRepositoryPort.updateOneById(id, farmacy);
-    }
+    // public Farmacy updateFarmacy(Long id, Farmacy farmacy) {
+    //     return farmacyRepositoryPort.update(id, farmacy);
+    // }
 
 }

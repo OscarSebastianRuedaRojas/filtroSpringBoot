@@ -3,6 +3,7 @@ package com.proyecto.filtro.repository;
 import java.util.List;
 import java.util.Optional;
 
+
 import com.proyecto.filtro.entity.Farmacy;
 
 public interface FarmacyRepositoryPort {
@@ -14,5 +15,5 @@ public interface FarmacyRepositoryPort {
 
     List<Farmacy> findAll();
 
-    Farmacy updateOneById(Long id, Farmacy farmacy);
+    // Farmacy update(Long id, Farmacy farmacy);
 }

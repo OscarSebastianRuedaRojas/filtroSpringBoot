@@ -6,15 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.proyecto.filtro.dto.FarmacyDto;
 import com.proyecto.filtro.entity.Farmacy;
 import com.proyecto.filtro.services.FarmacyService;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -26,7 +27,7 @@ public class FarmacyController {
     private FarmacyService farmacyService;
 
     @PostMapping("/create")
-    public Farmacy createFarmacy(@RequestParam Farmacy farmacy){
+    public Farmacy createFarmacyDto(@RequestBody FarmacyDto farmacy){
         return farmacyService.createFarmacy(farmacy);
     }
 
@@ -45,8 +46,8 @@ public class FarmacyController {
         return farmacyService.getFarmacyById(id).orElse(null);
     }
 
-    @PutMapping("/update/{id}")
-    public Farmacy updateFarmacy(@PathVariable Long id, @RequestParam Farmacy farmacy){
-        return farmacyService.updateFarmacy(id, farmacy);
-    }
+    // @PutMapping("/update/{id}")
+    // public Farmacy updateFarmacy(@PathVariable Long id, @RequestParam Farmacy farmacy){
+    //     return farmacyService.updateFarmacy(id, farmacy);
+    // }
 }
